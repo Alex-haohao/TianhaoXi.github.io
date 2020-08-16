@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>webpack常用工具记录 | Alex个人博客</title>
+<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1597574729045">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="webpack常用工具记录 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="webpack: 前端构建工具
+代码转换
+entry： 文件打包起点
+output：打包后的bundle去哪里
+loader：loader处理非js文件 翻译
+plugin 插件：处理更广的任务
+mode：dev 开发模式（本地调试）  p..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://TianhaoXi.github.io">
+  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1597574729045" alt="">
+  </a>
+  <h1 class="site-title">
+    Alex个人博客
+  </h1>
+  <p class="site-description">
+    学习
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              webpack常用工具记录
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-16
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>webpack: 前端构建工具<br>
+代码转换</p>
+<p>entry： 文件打包起点<br>
+output：打包后的bundle去哪里<br>
+loader：loader处理非js文件 翻译<br>
+plugin 插件：处理更广的任务<br>
+mode：dev 开发模式（本地调试）  production 生产模式</p>
+<p>import htmlwebpackplugin = require(&quot;html-webpack-plugin)</p>
+<p>module.exports={<br>
+entry:  ,<br>
+output:{<br>
+filename:,<br>
+path:,</p>
+<pre><code>},
+
+// loader
+modules:{
+</code></pre>
+<p>rules:[<br>
+{</p>
+<pre><code>    //匹配哪些文件
+    test:/\.css$/,
+    //使用哪些loader
+    use:[
+        //从下到上的顺序
+        'style loader',
+        'css loader',
+
+    ]
+}
+</code></pre>
+<p>],</p>
+<pre><code>},
+
+plugins:[
+    // 默认创建一个空的html文件，自动引入打包输出所有的（js，css）资源
+
+    new htmlwebpackplugin()
+
+],
+mode: 
+</code></pre>
+<p>}</p>
+<p>打包图片资源：<br>
+{<br>
+test:/(jpg|png)<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;}&#039; at position 98: …ash:10].[ext]&#039;
+}̲
+{
+    test:/\.…'>/,
+    loader:&#039;url-loader&#039;,
+    options:{
+        limit:8*1024
+    },
+    name:&#039;[hash:10].[ext]&#039;
+}
+{
+    test:/\.html</span>/,<br>
+loader:'html-loader',</p>
+<p>}</p>
+<p>打包其他资源：<br>
+{<br>
+// 排除这里面的资源<br>
+exclude：<br>
+loader:&quot;file-loader&quot;<br>
+}</p>
+<p>const {resolve} = require('path')</p>
+<p>生产环境 production mode：<br>
+module.export={<br>
+entry:&quot;&quot;,<br>
+output:{<br>
+filename:,<br>
+path:,</p>
+<p>}<br>
+}</p>
+<p>minicssExtractplugin</p>
+<p>post-css loder<br>
+css兼容性处理</p>
+<p>压缩css:<br>
+optimize-css-assets-webpack-plugin</p>
+<p>js语法检查:<br>
+eslint-loader eslint<br>
+module:{<br>
+rules:[<br>
+test /.js$/,<br>
+exclude:/node_modules,<br>
+loader: &quot;eslint-loader&quot;,<br>
+options{<br>
+fix:true,</p>
+<pre><code>    }
+]
+</code></pre>
+<p>}</p>
+<p>js兼容性处理:<br>
+babel-loader</p>
+<p>rules:[<br>
+test:/.js$/,<br>
+exclude:/node_module/<br>
+loader: babel-loader,<br>
+options:{<br>
+presets:['@babel/prest-env']<br>
+}<br>
+]</p>
+<p>全部兼容性处理:<br>
+@babel/polyfill<br>
+core-js 按需加载</p>
+<p>压缩js和html:<br>
+mode:production js自动压缩<br>
+HtmlWebPackPlugin:<br>
+minify</p>
+<p>性能优化：<br>
+开发环境性能优化：<br>
+优化打包构建速度<br>
+优化代码调试</p>
+<p>HMR: hot module replacement<br>
+一个模块更新 只会重新打包这一个模块</p>
+<p>devServer{<br>
+contentBase: resolve(_dirname,'build'),<br>
+compress:true,<br>
+port:3000,<br>
+hot:true</p>
+<p>}</p>
+<p>sourcemap:<br>
+dev-tool:'source-map'<br>
+提供源代码路径，找到错误的位置<br>
+hidden 和 nosource不能找到源代码<br>
+inline和不加可以找到源代码<br>
+速度 (eval&gt;inline&gt;cheap)<br>
+cheap 不会精确到列</p>
+<p>生产环境的优化<br>
+oneof  包括rules<br>
+只会匹配一个loader   优化loader的处理时间</p>
+<p>缓存配置：<br>
+bable缓存:<br>
+rules:[<br>
+test:/.js$/,<br>
+exclude:/node_module/<br>
+loader: babel-loader,<br>
+options:{<br>
+presets:['@babel/prest-env']<br>
+}，<br>
+ChacheDirectory:true;<br>
+]</p>
+<p>文件资源缓存<br>
+用chunkhash只给文件命名</p>
+<p>tree-shaking：<br>
+去除业务中没有使用的</p>
+<p>side-effect：false</p>
+<p>代码分割 code split：<br>
+optimazation：{<br>
+splitChunks{<br>
+chunks:'all'<br>
+}<br>
+}<br>
+能够单独打包node_module<br>
+不会重复打包多次</p>
+<p>lazyloading：</p>
+<p>多进程打包：<br>
+Thread loader<br>
+只有工作消耗时间比较长才需要多进程打包</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://TianhaoXi.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://TianhaoXi.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
