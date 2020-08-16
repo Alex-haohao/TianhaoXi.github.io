@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-16T10:51:27.269Z</updated>
+    <updated>2020-08-16T10:53:41.458Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,205 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[js的小知识点]]></title>
+        <id>https://TianhaoXi.github.io/post/js-de-xiao-zhi-shi-dian/</id>
+        <link href="https://TianhaoXi.github.io/post/js-de-xiao-zhi-shi-dian/">
+        </link>
+        <updated>2020-08-16T10:53:11.000Z</updated>
+        <content type="html"><![CDATA[<p>变量提升：预先解析代码  var会先声明<br>
+使用let 会有临时性死区 需先声明再使用</p>
+<p>var 是 globle scope<br>
+let const 是 locol scope</p>
+<p>匿名函数不会有函数提升 具名函数有函数提升</p>
+<p>使用call 和 bind 会立即执行<br>
+bind不会立即执行，相当于生成一个新函数</p>
+<p>全局函数不会被回收<br>
+作用域scope:</p>
+<p>每一次调用一个函数就会新开一份内存地址</p>
+<p>闭包 读取其他函数内部变量的函数<br>
+javascript中，只有函数内部的子函数才能读取局部变量</p>
+<p>this指调用函数的对象</p>
+<p>object.assign<br>
+{...hd}</p>
+<p>json prototype:</p>
+<p>prototype:<br>
+a instanceof b  like: Array object 构造函数<br>
+isPrototypeOf  一个object是否是另一个object的prototype<br>
+in 会检查自己和prototype chain  hasOwnProperty 只会检查自己的property<br>
+继承是prototype的继承，不是constructor的继承</p>
+<p>fucntion 可以作为object  <em>proto</em></p>
+<p>原型和对象原型</p>
+<p>可以用 Symble() 来保护property<br>
+pretected = Symble();<br>
+this[pretected].name = name;</p>
+<p>用WeakMap 保护property<br>
+const host = new WeakMap();</p>
+<h1 id="private-property">private property</h1>
+<p>super是调用parent的方法</p>
+<p>regexp<br>
+断言匹配:(?= ) 后面是什么<br>
+(?&lt;= )前面是什么<br>
+(?! ) 后面不是什么<br>
+(?&lt;=) 前面不是什么</p>
+<p>promise:</p>
+<p>new Promise((resolve,reject) =&gt;{<br>
+resolve(&quot;yesyes&quot;)<br>
+}).then(<br>
+value=&gt;{<br>
+console.log(&quot;success&quot;)<br>
+},<br>
+reason =&gt;{<br>
+console.log(&quot;failed&quot;)<br>
+}<br>
+)</p>
+<p>宏任务与微任务的顺序</p>
+<p>封装ajax:</p>
+<p>function</p>
+<p>event loop:<br>
+一般情况下，一个进程一次只能执行一个任务。</p>
+<p>如果有很多任务需要执行，不外乎三种解决方法。</p>
+<p>（1）排队。因为一个进程一次只能执行一个任务，只好等前面的任务执行完了，再执行后面的任务。</p>
+<p>（2）新建进程。使用fork命令，为每个任务新建一个进程。</p>
+<p>（3）新建线程。因为进程太耗费资源，所以如今的程序往往允许一个进程包含多个线程，由线程去完成任务。（进程和线程的详细解释，请看这里。）</p>
+<p>JavaScript语言为例，它是一种单线程语言</p>
+<p>就是在程序中设置两个线程：一个负责程序本身的运行，称为&quot;主线程&quot;；另一个负责主线程与其他进程（主要是各种I/O操作）的通信，被称为&quot;Event Loop线程&quot;（可以译为&quot;消息线程&quot;）。</p>
+<p>js DOM:</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[css的小知识点]]></title>
+        <id>https://TianhaoXi.github.io/post/css-de-xiao-zhi-shi-dian/</id>
+        <link href="https://TianhaoXi.github.io/post/css-de-xiao-zhi-shi-dian/">
+        </link>
+        <updated>2020-08-16T10:52:47.000Z</updated>
+        <content type="html"><![CDATA[<p>4种选择器：. class    # id     p{} type    * all<br>
+标签选择器  属性选择器</p>
+<p>div&gt;span{}   用&gt;嵌套</p>
+<p>width可以有 100%  height只有固定值</p>
+<p>background-image: url()<br>
+background-repeat<br>
+background-size: cover or 100%<br>
+background-attachment: fixed | local | scoll</p>
+<p>color 最好不要用颜色名称  rgba  a：透明度0-1<br>
+opacity 透明度 0-1</p>
+<p>text-overflow overflow: hidden</p>
+<p>clear float:<br>
+在添加float的parent添加一个{clear:left | right | both   overflow: hidden}</p>
+<p>visibility: hidden 不可见时依然占位  display:none 不占位</p>
+<p>position<br>
+relative: left right top bottom</p>
+<p>伪类：a: link  a:visited  a:hover  a:active</p>
+<p>article :first-child<br>
+article: nth-child(2n)</p>
+<p>选择器优先级<br>
+权重 id:100 class:10 标签:1 *:0 权重是可以叠加的  行级/内联的权重最高</p>
+<p>1 选择器优先级内联样式 &gt; ID 选择器 &gt; 类选择器 = 属性选择器 = 伪类选择器 &gt; 标签选择器<br>
+强制提高优先级 !important<br>
+继承没有权重</p>
+<p>字体  1em  = 100%</p>
+<p>盒子模型</p>
+<p>元素居中： margin-left:auto margin-right:auto<br>
+margin 负值 溢出盒子外</p>
+<p>box-sizing: border-box  不会管padding 和margin增加的</p>
+<p>outline 不会占位  border会</p>
+<p>display:none<br>
+visibility: hidden<br>
+opacity: 0</p>
+<p>h2::after{</p>
+<p>}</p>
+<p>浮动 float<br>
+float:left<br>
+行级元素 float后会变成块级元素<br>
+清除浮动 clear: left||right||both<br>
+在浮动元素下追加一个 div class=&quot;clear_fix&quot; 来清除浮动<br>
+在父元素后加一个::after<br>
+main::after{<br>
+clear:both;<br>
+display:block;<br>
+content:&quot;&quot;<br>
+}</p>
+<p>或者 在main{<br>
+overflow:hidden<br>
+}</p>
+<p>css定位<br>
+relative 相对他在文档中的位置定一个偏移量<br>
+如果父级有定位属性，那么下面的定位将参照父级<br>
+fix 相对于页面</p>
+<p>元素居中的几种方式</p>
+<p>flex:<br>
+flex-direction<br>
+flex-wrap :wrap<br>
+justify-content: 对主轴进行排列  center ||  space-between<br>
+align-item:</p>
+<p>绘制三角形：<br>
+section{<br>
+width: 0;<br>
+height:0;<br>
+border-left: 50px solid transparent ;<br>
+border-right: 50px solid transparent ;<br>
+border-bottom: 50px solid black ;<br>
+border-top: 50px solid transparent ;<br>
+}</p>
+<p>绘制梯形：<br>
+section{<br>
+width: 100px;<br>
+height:0;<br>
+border-left: 37px solid transparent ;<br>
+border-right: 37px solid transparent ;<br>
+border-top: 50px solid red ;<br>
+}</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[nginx学习记录]]></title>
+        <id>https://TianhaoXi.github.io/post/nginx-xue-xi-ji-lu/</id>
+        <link href="https://TianhaoXi.github.io/post/nginx-xue-xi-ji-lu/">
+        </link>
+        <updated>2020-08-16T10:51:51.000Z</updated>
+        <content type="html"><![CDATA[<p>nginx 常用操作<br>
+nginx -v 查看版本<br>
+service nginx stop 关闭nignx<br>
+service nginx start 启动nginx<br>
+nginx -s reload 重启nginx</p>
+<p>配置文件：<br>
+server {<br>
+#端口号<br>
+listen 80;<br>
+#域名或者ip<br>
+server_name 112.74.37.77;<br>
+#文件的路径<br>
+root /www/AlexMain;<br>
+#配置默认访问的页面<br>
+index index.html;<br>
+#配置代理<br>
+location /api {<br>
+proxy_pass http://127.0.0.1:3033;<br>
+}<br>
+location /apilist {<br>
+rewrite /apilist/(.*) /$1 break;<br>
+proxy_pass http://127.0.0.1:3033;<br>
+}</p>
+<p>location / {<br>
+#当输入错误路径时，跳转到index.html页面<br>
+try_files $uri $uri/ /index.html;<br>
+}<br>
+}</p>
+<p>nginx全局块： worker_processes auto;   并发数量</p>
+<p>event块<br>
+events {<br>
+worker_connections 1024;<br>
+}<br>
+nignx 支持的最大连接数</p>
+<p>http块：http全局块和server块</p>
+<p>location  ~  表示uri 正则表达式 区分大小写<br>
+~* 正则表达式 不区分大小写<br>
+= 严格匹配</p>
+<p>nginx 负载均衡<br>
+upstream myserver{}<br>
+轮询 ip_hash weight  fair</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[webpack常用工具记录]]></title>
         <id>https://TianhaoXi.github.io/post/webpack-chang-yong-gong-ju-ji-lu/</id>

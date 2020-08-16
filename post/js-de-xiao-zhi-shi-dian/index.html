@@ -2,24 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Alex个人博客</title>
+<title>js的小知识点 | Alex个人博客</title>
 <link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1597575201030">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="js的小知识点 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
-
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+    <meta name="description" content="变量提升：预先解析代码  var会先声明
+使用let 会有临时性死区 需先声明再使用
+var 是 globle scope
+let const 是 locol scope
+匿名函数不会有函数提升 具名函数有函数提升
+使用call 和 bin..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,56 +79,83 @@ Gridea 主页
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              js的小知识点
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2020-08-16
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
-              
-                <a href="https://TianhaoXi.github.io/tag/mg_ItUTJ3/" class="post-tag">
-                  # Gridea
-                </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://TianhaoXi.github.io/post-images/hello-gridea.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>变量提升：预先解析代码  var会先声明<br>
+使用let 会有临时性死区 需先声明再使用</p>
+<p>var 是 globle scope<br>
+let const 是 locol scope</p>
+<p>匿名函数不会有函数提升 具名函数有函数提升</p>
+<p>使用call 和 bind 会立即执行<br>
+bind不会立即执行，相当于生成一个新函数</p>
+<p>全局函数不会被回收<br>
+作用域scope:</p>
+<p>每一次调用一个函数就会新开一份内存地址</p>
+<p>闭包 读取其他函数内部变量的函数<br>
+javascript中，只有函数内部的子函数才能读取局部变量</p>
+<p>this指调用函数的对象</p>
+<p>object.assign<br>
+{...hd}</p>
+<p>json prototype:</p>
+<p>prototype:<br>
+a instanceof b  like: Array object 构造函数<br>
+isPrototypeOf  一个object是否是另一个object的prototype<br>
+in 会检查自己和prototype chain  hasOwnProperty 只会检查自己的property<br>
+继承是prototype的继承，不是constructor的继承</p>
+<p>fucntion 可以作为object  <em>proto</em></p>
+<p>原型和对象原型</p>
+<p>可以用 Symble() 来保护property<br>
+pretected = Symble();<br>
+this[pretected].name = name;</p>
+<p>用WeakMap 保护property<br>
+const host = new WeakMap();</p>
+<h1 id="private-property">private property</h1>
+<p>super是调用parent的方法</p>
+<p>regexp<br>
+断言匹配:(?= ) 后面是什么<br>
+(?&lt;= )前面是什么<br>
+(?! ) 后面不是什么<br>
+(?&lt;=) 前面不是什么</p>
+<p>promise:</p>
+<p>new Promise((resolve,reject) =&gt;{<br>
+resolve(&quot;yesyes&quot;)<br>
+}).then(<br>
+value=&gt;{<br>
+console.log(&quot;success&quot;)<br>
+},<br>
+reason =&gt;{<br>
+console.log(&quot;failed&quot;)<br>
+}<br>
+)</p>
+<p>宏任务与微任务的顺序</p>
+<p>封装ajax:</p>
+<p>function</p>
+<p>event loop:<br>
+一般情况下，一个进程一次只能执行一个任务。</p>
+<p>如果有很多任务需要执行，不外乎三种解决方法。</p>
+<p>（1）排队。因为一个进程一次只能执行一个任务，只好等前面的任务执行完了，再执行后面的任务。</p>
+<p>（2）新建进程。使用fork命令，为每个任务新建一个进程。</p>
+<p>（3）新建线程。因为进程太耗费资源，所以如今的程序往往允许一个进程包含多个线程，由线程去完成任务。（进程和线程的详细解释，请看这里。）</p>
+<p>JavaScript语言为例，它是一种单线程语言</p>
+<p>就是在程序中设置两个线程：一个负责程序本身的运行，称为&quot;主线程&quot;；另一个负责主线程与其他进程（主要是各种I/O操作）的通信，被称为&quot;Event Loop线程&quot;（可以译为&quot;消息线程&quot;）。</p>
+<p>js DOM:</p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
+<li><a href="#private-property">private property</a></li>
 </ul>
 
               </div>
@@ -138,6 +163,15 @@ Gridea 主页
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://TianhaoXi.github.io/post/css-de-xiao-zhi-shi-dian/">
+              <h3 class="post-title">
+                css的小知识点
+              </h3>
+            </a>
+          </div>
         
 
         

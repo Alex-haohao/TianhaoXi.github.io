@@ -2,24 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Alex个人博客</title>
+<title>css的小知识点 | Alex个人博客</title>
 <link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1597575201030">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="css的小知识点 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
-
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+    <meta name="description" content="4种选择器：. class    # id     p{} type    * all
+标签选择器  属性选择器
+div&gt;span{}   用&gt;嵌套
+width可以有 100%  height只有固定值
+background-i..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,63 +78,114 @@ Gridea 主页
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              css的小知识点
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2020-08-16
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
-              
-                <a href="https://TianhaoXi.github.io/tag/mg_ItUTJ3/" class="post-tag">
-                  # Gridea
-                </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://TianhaoXi.github.io/post-images/hello-gridea.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>4种选择器：. class    # id     p{} type    * all<br>
+标签选择器  属性选择器</p>
+<p>div&gt;span{}   用&gt;嵌套</p>
+<p>width可以有 100%  height只有固定值</p>
+<p>background-image: url()<br>
+background-repeat<br>
+background-size: cover or 100%<br>
+background-attachment: fixed | local | scoll</p>
+<p>color 最好不要用颜色名称  rgba  a：透明度0-1<br>
+opacity 透明度 0-1</p>
+<p>text-overflow overflow: hidden</p>
+<p>clear float:<br>
+在添加float的parent添加一个{clear:left | right | both   overflow: hidden}</p>
+<p>visibility: hidden 不可见时依然占位  display:none 不占位</p>
+<p>position<br>
+relative: left right top bottom</p>
+<p>伪类：a: link  a:visited  a:hover  a:active</p>
+<p>article :first-child<br>
+article: nth-child(2n)</p>
+<p>选择器优先级<br>
+权重 id:100 class:10 标签:1 *:0 权重是可以叠加的  行级/内联的权重最高</p>
+<p>1 选择器优先级内联样式 &gt; ID 选择器 &gt; 类选择器 = 属性选择器 = 伪类选择器 &gt; 标签选择器<br>
+强制提高优先级 !important<br>
+继承没有权重</p>
+<p>字体  1em  = 100%</p>
+<p>盒子模型</p>
+<p>元素居中： margin-left:auto margin-right:auto<br>
+margin 负值 溢出盒子外</p>
+<p>box-sizing: border-box  不会管padding 和margin增加的</p>
+<p>outline 不会占位  border会</p>
+<p>display:none<br>
+visibility: hidden<br>
+opacity: 0</p>
+<p>h2::after{</p>
+<p>}</p>
+<p>浮动 float<br>
+float:left<br>
+行级元素 float后会变成块级元素<br>
+清除浮动 clear: left||right||both<br>
+在浮动元素下追加一个 div class=&quot;clear_fix&quot; 来清除浮动<br>
+在父元素后加一个::after<br>
+main::after{<br>
+clear:both;<br>
+display:block;<br>
+content:&quot;&quot;<br>
+}</p>
+<p>或者 在main{<br>
+overflow:hidden<br>
+}</p>
+<p>css定位<br>
+relative 相对他在文档中的位置定一个偏移量<br>
+如果父级有定位属性，那么下面的定位将参照父级<br>
+fix 相对于页面</p>
+<p>元素居中的几种方式</p>
+<p>flex:<br>
+flex-direction<br>
+flex-wrap :wrap<br>
+justify-content: 对主轴进行排列  center ||  space-between<br>
+align-item:</p>
+<p>绘制三角形：<br>
+section{<br>
+width: 0;<br>
+height:0;<br>
+border-left: 50px solid transparent ;<br>
+border-right: 50px solid transparent ;<br>
+border-bottom: 50px solid black ;<br>
+border-top: 50px solid transparent ;<br>
+}</p>
+<p>绘制梯形：<br>
+section{<br>
+width: 100px;<br>
+height:0;<br>
+border-left: 37px solid transparent ;<br>
+border-right: 37px solid transparent ;<br>
+border-top: 50px solid red ;<br>
+}</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://TianhaoXi.github.io/post/nginx-xue-xi-ji-lu/">
+              <h3 class="post-title">
+                nginx学习记录
+              </h3>
+            </a>
+          </div>
         
 
         
