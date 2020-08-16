@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-16T10:57:07.509Z</updated>
+    <updated>2020-08-16T11:01:42.022Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -286,8 +286,8 @@ module.export={<br>
 entry:&quot;&quot;,<br>
 output:{<br>
 filename:,<br>
-path:,</p>
-<p>}<br>
+path:,<br>
+}<br>
 }</p>
 <p>minicssExtractplugin</p>
 <p>post-css loder<br>
@@ -361,9 +361,9 @@ ChacheDirectory:true;<br>
 用chunkhash只给文件命名</p>
 <p>tree-shaking：<br>
 去除业务中没有使用的</p>
-<p>side-effect：false</p>
+<p>side-effect: false</p>
 <p>代码分割 code split：<br>
-optimazation：{<br>
+optimazation:{<br>
 splitChunks{<br>
 chunks:'all'<br>
 }<br>
@@ -373,7 +373,8 @@ chunks:'all'<br>
 <p>lazyloading：</p>
 <p>多进程打包：<br>
 Thread loader<br>
-只有工作消耗时间比较长才需要多进程打包</p>
+只有工作消耗时间比较长才需要多进程打包<br>
+不要轻易使用，可能会造成打包时间变慢</p>
 ]]></content>
     </entry>
 </feed>
