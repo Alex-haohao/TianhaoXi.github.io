@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-16T12:59:21.630Z</updated>
+    <updated>2020-08-22T08:06:28.126Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,247 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[merge sort]]></title>
+        <id>https://TianhaoXi.github.io/post/merge-sort/</id>
+        <link href="https://TianhaoXi.github.io/post/merge-sort/">
+        </link>
+        <updated>2020-08-22T08:06:15.000Z</updated>
+        <content type="html"><![CDATA[<p>// merge Sort<br>
+function mergeSort(arr) { // 采用自上而下的递归方法<br>
+var length = arr.length;<br>
+if (length &lt; 2) {<br>
+return arr;<br>
+}</p>
+<pre><code>var middle = Math.floor(length / 2);
+var left = arr.slice(0, middle);
+var right = arr.slice(middle);
+
+return merge(mergeSort(left), mergeSort(right));
+</code></pre>
+<p>}</p>
+<p>function merge(left, right) {<br>
+var result = [];<br>
+console.log('left', left, 'right', right);<br>
+while (left.length &amp;&amp; right.length) {<br>
+if (left[0] &lt;= right[0]) {<br>
+result.push(left.shift());<br>
+} else {<br>
+result.push(right.shift());<br>
+}<br>
+}</p>
+<pre><code>while (left.length) {
+  result.push(left.shift());
+}
+
+while (right.length) {
+  result.push(right.shift());
+}
+return result;
+</code></pre>
+<p>}</p>
+<p>var array = [3,5,1,2,3,5,6,7]<br>
+var result = mergeSort(array);<br>
+console.log(result)</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[matrix_clodckspin]]></title>
+        <id>https://TianhaoXi.github.io/post/matrix_clodckspin/</id>
+        <link href="https://TianhaoXi.github.io/post/matrix_clodckspin/">
+        </link>
+        <updated>2020-08-22T08:04:52.000Z</updated>
+        <content type="html"><![CDATA[<p>function printMatrix(matrix)<br>
+{<br>
+// write code here</p>
+<pre><code>var row = matrix.length;
+var col = matrix[0].length;
+   
+
+var res = [];
+if(row ==0 || col == 0){
+    return null;
+}
+
+var left = 0; var right = col - 1; var top=0; var bottom = row-1;
+
+while(left&lt;= right &amp;&amp; top &lt;= bottom ){
+    
+    for(var i =left; i&lt;= right; i++){
+        res.push(matrix[top][i]);
+    }
+    for(var i = top+1; i&lt;= bottom;i++ ){
+        res.push(matrix[i][right]);
+    }
+    if(top != bottom){
+        for (var i = right-1;i&gt;= left;i--){
+            res.push(matrix[bottom][i]);
+        }
+    }
+    if(left != right){
+        for (var i = bottom-1 ; i&gt; top;i--){
+            res.push(matrix[i][left]);
+        }
+    }
+  left = left+1;  
+  top = top+1;
+  right = right -1;
+   bottom = bottom -1; 
+}
+return res;
+</code></pre>
+<p>}</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[quick sort]]></title>
+        <id>https://TianhaoXi.github.io/post/quick-sort/</id>
+        <link href="https://TianhaoXi.github.io/post/quick-sort/">
+        </link>
+        <updated>2020-08-22T08:04:33.000Z</updated>
+        <content type="html"><![CDATA[<p>// quick sort</p>
+<p>function quicksort(array){<br>
+if(array.length&lt;2){<br>
+return array;<br>
+}</p>
+<pre><code>var piviotindex = Math.floor(array.length/2)
+var pivot = array.splice(piviotindex,1)[0];
+var left =[];
+var right = [];
+
+for(var i =0;i&lt;array.length;i++){
+    if(array[i]&lt;pivot){
+        left.push(array[i])
+    }
+    else{
+        right.push(array[i])
+    }
+}
+
+return quicksort(left).concat([pivot],quicksort(right))
+</code></pre>
+<p>}</p>
+<p>////////////////////<br>
+function quickSort(arr, left, right) {<br>
+if (Object.prototype.toString.call(arr).slice(8, -1) === 'Array' &amp;&amp; typeof length === 'number' &amp;&amp; typeof right === 'number') {</p>
+<pre><code>  if (left &lt; right) {
+    var pivot = arr[left]; // 起始位置
+    var setPos = left + 1; // 设置的位置
+    for (var i = left + 1; i &lt;= right; i++) {
+      if (arr[i] &lt; pivot) {
+        swap(arr,i,setPos)
+        setPos++;
+      }
+    }
+    // 循环完成之后将key与 pos-1的位置交换
+    swap(arr,left,setPos-1)
+
+    // console.log('每一次排序', '当前key值===&gt;', key, '排序完成当前数组===&gt;', JSON.stringify(arr));
+
+    quickSort(arr, left, setPos - 2);
+    quickSort(arr, setPos, right);
+    // console.log('arr=======&gt;', arr);
+  }
+} else {
+  return 'array is not an Array or left or right is not a number!';
+}
+return arr;
+</code></pre>
+<p>}</p>
+<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];<br>
+// var arr = [7, 3, 2, 10, 13, 8, 5];<br>
+console.log(quickSort(arr, 0, arr.length - 1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Heap sort]]></title>
+        <id>https://TianhaoXi.github.io/post/heap-sort/</id>
+        <link href="https://TianhaoXi.github.io/post/heap-sort/">
+        </link>
+        <updated>2020-08-22T08:02:40.000Z</updated>
+        <content type="html"><![CDATA[<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>function bubbleup(array,index){<br>
+const parentindex = Math.floor((index-1)/2)<br>
+if(array[parentindex] &amp;&amp; array[parentindex]&lt;array[index]){<br>
+swap(array,parentindex,index)<br>
+bubbleup(array,parentindex);<br>
+}<br>
+return;<br>
+}</p>
+<p>function bubbledown(arr,index,size){<br>
+var left = index * 2 + 1;<br>
+while (left &lt; size) {<br>
+var largest = left + 1 &lt; size &amp;&amp; arr[left + 1] &gt; arr[left] ? left + 1 : left;<br>
+largest = arr[largest] &gt; arr[index] ? largest : index;<br>
+if (largest == index) {<br>
+break;<br>
+}<br>
+swap(arr, largest, index);<br>
+index = largest;<br>
+left = index * 2 + 1;<br>
+}<br>
+}</p>
+<p>function heapSort(arr) {<br>
+if (arr == null || arr.length &lt; 2) {<br>
+return;<br>
+}</p>
+<pre><code>for (var i = 0; i &lt; arr.length; i++) {
+    bubbleup(arr, i);
+}
+var size = arr.length;
+swap(arr, 0, --size);
+while (size &gt; 0) {
+    bubbledown(arr, 0, size);
+    swap(arr, 0, --size);
+}
+</code></pre>
+<p>}</p>
+<p>var arr = [91, 60, 96, 13, 35, 65, 46, 65, 10, 30, 20, 31, 77, 81, 22];<br>
+heapSort(arr);<br>
+console.log(arr)</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[动态规划常见题]]></title>
+        <id>https://TianhaoXi.github.io/post/dong-tai-gui-hua-chang-jian-ti/</id>
+        <link href="https://TianhaoXi.github.io/post/dong-tai-gui-hua-chang-jian-ti/">
+        </link>
+        <updated>2020-08-22T03:25:36.000Z</updated>
+        <content type="html"><![CDATA[<p>代金券组合😎dp<br>
+function coinChange(coins,amount){<br>
+let dp = new Array(amount+1).fill(Infinity)<br>
+dp[0]=0;<br>
+for(let coin of coins){<br>
+for(let i =1;i&lt;=amount;i++){<br>
+if(i-coin&gt;=0){<br>
+dp[i]=Math.min(dp[i],dp[i-coin]+1)<br>
+}<br>
+}<br>
+}</p>
+<pre><code>return dp[amount] === Infinity ? 'Impossible' : dp[amount];
+</code></pre>
+<p>}</p>
+<p>最小路径和：<br>
+function minPath(grid){<br>
+let m = grid.length;<br>
+let n = grid[0].length;</p>
+<pre><code>for(let i =m-1;i&gt;=0;i--){
+    for(let j=n-1;j&gt;=0;j--){
+        if (i + 1 &lt; m &amp;&amp; j + 1 &lt; n) {
+            grid[i][j] += Math.min(grid[i + 1][j], grid[i][j + 1])
+        } else if (i + 1 &lt; m) {
+            grid[i][j] += grid[i + 1][j]
+        } else if (j + 1 &lt; n) {
+            grid[i][j] += grid[i][j + 1]
+        }
+    }
+}
+return grid[0][0];   
+</code></pre>
+<p>}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[js的小知识点]]></title>
         <id>https://TianhaoXi.github.io/post/js-de-xiao-zhi-shi-dian/</id>
