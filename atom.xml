@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-22T08:06:28.126Z</updated>
+    <updated>2020-08-22T12:03:17.482Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,32 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[全排列]]></title>
+        <id>https://TianhaoXi.github.io/post/quan-pai-lie/</id>
+        <link href="https://TianhaoXi.github.io/post/quan-pai-lie/">
+        </link>
+        <updated>2020-08-22T12:03:05.000Z</updated>
+        <content type="html"><![CDATA[<p>var permute = function(nums) {<br>
+const list = [];<br>
+backtrack(list, [], nums)<br>
+return list<br>
+};</p>
+<p>function backtrack(list,templist,num){<br>
+if(templist.length === num.length){<br>
+list.push([...templist])<br>
+}<br>
+for(let i=0;i&lt;num.length;i++){<br>
+if(templist.includes(num[i])){<br>
+continue;<br>
+}<br>
+templist.push(num[i]);<br>
+backtrack(list,templist,num);<br>
+templist.pop()<br>
+}<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[merge sort]]></title>
         <id>https://TianhaoXi.github.io/post/merge-sort/</id>
