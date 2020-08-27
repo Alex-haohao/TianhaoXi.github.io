@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>全排列 | Alex个人博客</title>
-<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598496547706">
+<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598525906876">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="全排列 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
@@ -26,7 +26,7 @@ function backtrack(list,templis..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://TianhaoXi.github.io">
-  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1598496547706" alt="">
+  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1598525906876" alt="">
   </a>
   <h1 class="site-title">
     Alex个人博客
@@ -114,6 +114,29 @@ templist.push(num[i]);<br>
 backtrack(list,templist,num);<br>
 templist.pop()<br>
 }<br>
+}</p>
+<p>var permute = function(nums) {<br>
+let n = nums.length;<br>
+nums = nums.sort((a,b) =&gt; {return a - b});<br>
+let res = [];<br>
+let tmpPath = [];<br>
+let hash = {};<br>
+let backtrack = (tmpPath) =&gt; {<br>
+if(tmpPath.length == n){<br>
+res.push(tmpPath);<br>
+return;<br>
+}<br>
+for(let i = 0;i &lt; n;i++){<br>
+if(hash[i] || (i &gt; 0 &amp;&amp; !hash[i-1] &amp;&amp; nums[i-1] == nums[i])) continue;<br>
+hash[i] = true;<br>
+tmpPath.push(nums[i]);<br>
+backtrack([...tmpPath]);<br>
+hash[i] = false;<br>
+tmpPath.pop();<br>
+}<br>
+}<br>
+backtrack(tmpPath);<br>
+return res;<br>
 }</p>
 
               </div>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-27T02:49:10.304Z</updated>
+    <updated>2020-08-27T10:58:28.633Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -33,6 +33,29 @@ templist.push(num[i]);<br>
 backtrack(list,templist,num);<br>
 templist.pop()<br>
 }<br>
+}</p>
+<p>var permute = function(nums) {<br>
+let n = nums.length;<br>
+nums = nums.sort((a,b) =&gt; {return a - b});<br>
+let res = [];<br>
+let tmpPath = [];<br>
+let hash = {};<br>
+let backtrack = (tmpPath) =&gt; {<br>
+if(tmpPath.length == n){<br>
+res.push(tmpPath);<br>
+return;<br>
+}<br>
+for(let i = 0;i &lt; n;i++){<br>
+if(hash[i] || (i &gt; 0 &amp;&amp; !hash[i-1] &amp;&amp; nums[i-1] == nums[i])) continue;<br>
+hash[i] = true;<br>
+tmpPath.push(nums[i]);<br>
+backtrack([...tmpPath]);<br>
+hash[i] = false;<br>
+tmpPath.pop();<br>
+}<br>
+}<br>
+backtrack(tmpPath);<br>
+return res;<br>
 }</p>
 ]]></content>
     </entry>
@@ -346,6 +369,33 @@ dp[i][j] = Math.max(a,b)<br>
 return dp[n][capacity];
 </code></pre>
 <p>}</p>
+<p>不同的二叉搜索树<br>
+var numTrees = function(n) {<br>
+let dp = new Array(n+1).fill(0);<br>
+dp[0] = 1<br>
+dp[1] = 1<br>
+for (let i = 2; i &lt;= n; ++i) {<br>
+for (let j = 1; j &lt;= i; ++j) {<br>
+dp[i]  += dp[j-1] * dp[i-j];<br>
+}<br>
+}<br>
+return dp[n]<br>
+};</p>
+<p>无重复字符的最长子串</p>
+<p>var lengthOfLongestSubstring = function(s) {</p>
+<pre><code>let max = 0;
+let arr = [];
+for(let i =0;i&lt;s.length;i++){
+    let index = arr.indexOf(s[i]);
+    if(index !== -1){
+        arr.splice(0,index+1)
+    }
+    arr.push(s[i]);
+    max = Math.max(arr.length,max)
+}
+return max
+</code></pre>
+<p>};</p>
 ]]></content>
     </entry>
     <entry>
