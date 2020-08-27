@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-22T12:03:17.482Z</updated>
+    <updated>2020-08-27T02:49:10.304Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -273,6 +273,77 @@ let n = grid[0].length;</p>
     }
 }
 return grid[0][0];   
+</code></pre>
+<p>}</p>
+<p>01 背包<br>
+var line=readline().split(' ');<br>
+var N=parseInt(line[0]);//承重<br>
+var c=parseInt(line[1]);//数量<br>
+var w=[0],p=[0];//重 价值<br>
+while(lines=readline()){<br>
+let nums=lines.split(' ').map(Number);<br>
+p.push(nums[0])//;<br>
+w.push(nums[1]);<br>
+}<br>
+function DyadicArray(N, c, w, p) {<br>
+//初始化表格<br>
+var dp = new Array(N + 1); //表格有n+1行<br>
+for (let n = 0; n &lt; N + 1; n++) {<br>
+dp[n] = new Array(c + 1).fill(0); //每行有c+1列<br>
+}</p>
+<p>for (let i = 1; i &lt;= N; i++) {<br>
+for (let j = 0; j &lt;= c; j++) {<br>
+if (j - w[i] &gt;= 0) {<br>
+dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - w[i]] + p[i]);<br>
+} else {<br>
+dp[i][j] = dp[i - 1][j];<br>
+}<br>
+}<br>
+}<br>
+return(dp[N][c])<br>
+}<br>
+console.log(DyadicArray(N, c, w, p))</p>
+<p>最长公共子序列</p>
+<p>var longestCommonSubsequence = function(text1, text2) {<br>
+let n = text1.length;<br>
+let m = text2.length;<br>
+let dp = Array.from(new Array(n+1),() =&gt; new Array(m+1).fill(0));</p>
+<pre><code>for(let i =1;i&lt;=n;i++){
+    for(let j=1;j&lt;=m;j++){
+        if(text1[i-1]===text2[j-1]){
+            dp[i][j] = 1+dp[i-1][j-1];
+        }
+        else{
+            dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1])
+        }
+    }
+}
+return dp[n][m]
+</code></pre>
+<p>};</p>
+<p>01 背包：<br>
+function kanpSack(capacity, weights, values, n) {<br>
+var a,b,dp = []</p>
+<p>//首先，初始化用于寻找解决方案的矩阵KS[n+1][capacity+1]<br>
+for (var i = 0; i &lt;= n; i++) {<br>
+dp[i] = [];<br>
+}<br>
+for (var i = 0; i &lt;= n; i++) {<br>
+for (var j = 0; j &lt;= capacity; j++) {<br>
+if (i === 0 || j === 0) {<br>
+//让第一行和第一列为0，因为第一行和第一列表示容量为0或没有物品可装<br>
+dp[i][j] = 0;<br>
+} else if (weights[i - 1] &gt; j) {<br>
+dp[i][j] = dp[i - 1][j]; //当前物品重量大于当前容量<br>
+} else {<br>
+//当前物品重量小于当前容量，有两个选择，装或者不装，取价值最大的<br>
+a = dp[i - 1][j - weights[i - 1]] + values[i - 1]; //装入这个物品后的总价值<br>
+b = dp[i - 1][j]; //不装<br>
+dp[i][j] = Math.max(a,b)<br>
+}<br>
+}</p>
+<pre><code>}
+return dp[n][capacity];
 </code></pre>
 <p>}</p>
 ]]></content>
