@@ -2,18 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Heap sort | Alex个人博客</title>
+<title>寻找document全部节点 | Alex个人博客</title>
 <link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598659801017">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Heap sort | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="寻找document全部节点 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }
-function bubbleup(array,index){
-const pare..." />
+    <meta name="description" content="function getElCount(n){                     //定义文档元素统计函数
+var num = 0;                            //初始化变量
+if(n.nodeType =..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -80,60 +80,35 @@ const pare..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Heap sort
+              寻找document全部节点
             </h2>
             <div class="post-info">
               <span>
-                2020-08-22
+                2020-08-28
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
-<p>function bubbleup(array,index){<br>
-const parentindex = Math.floor((index-1)/2)<br>
-if(array[parentindex] &amp;&amp; array[parentindex]&lt;array[index]){<br>
-swap(array,parentindex,index)<br>
-bubbleup(array,parentindex);<br>
+                <p>function getElCount(n){                     //定义文档元素统计函数<br>
+var num = 0;                            //初始化变量<br>
+if(n.nodeType == 1){                    //检查是否为元素节点<br>
+num++;                              //如果是，计数器加1<br>
+console.log(n.nodeName);            //输出元素节点名称<br>
 }<br>
-return;<br>
-}</p>
-<p>function bubbledown(arr,index,size){<br>
-var left = index * 2 + 1;<br>
-while (left &lt; size) {<br>
-var largest = left + 1 &lt; size &amp;&amp; arr[left + 1] &gt; arr[left] ? left + 1 : left;<br>
-largest = arr[largest] &gt; arr[index] ? largest : index;<br>
-if (largest == index) {<br>
-break;<br>
+var son = n.childNodes;                 //获取所有子节点<br>
+for(var i=0 ; i&lt;son.length ; i++){      //遍历每个子元素<br>
+num += getElCount(son[i]);    //递归操作<br>
 }<br>
-swap(arr, largest, index);<br>
-index = largest;<br>
-left = index * 2 + 1;<br>
+return num;                             //返回统计值<br>
 }<br>
+window.onload=function(){<br>
+console.log('文档中元素节点的个数是：'+getElCount(document)+'个')<br>
 }</p>
-<p>function heapSort(arr) {<br>
-if (arr == null || arr.length &lt; 2) {<br>
-return;<br>
-}</p>
-<pre><code>for (var i = 0; i &lt; arr.length; i++) {
-    bubbleup(arr, i);
-}
-var size = arr.length;
-swap(arr, 0, --size);
-while (size &gt; 0) {
-    bubbledown(arr, 0, size);
-    swap(arr, 0, --size);
-}
-</code></pre>
-<p>}</p>
-<p>var arr = [91, 60, 96, 13, 35, 65, 46, 65, 10, 30, 20, 31, 77, 81, 22];<br>
-heapSort(arr);<br>
-console.log(arr)</p>
 
               </div>
               <div class="toc-container">
@@ -146,9 +121,9 @@ console.log(arr)</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://TianhaoXi.github.io/post/dong-tai-gui-hua-chang-jian-ti/">
+            <a href="https://TianhaoXi.github.io/post/quan-pai-lie/">
               <h3 class="post-title">
-                动态规划常见题
+                全排列
               </h3>
             </a>
           </div>

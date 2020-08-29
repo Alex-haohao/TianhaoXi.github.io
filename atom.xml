@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-27T10:58:28.633Z</updated>
+    <updated>2020-08-29T00:10:03.022Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[寻找document全部节点]]></title>
+        <id>https://TianhaoXi.github.io/post/xun-zhao-document-quan-bu-jie-dian/</id>
+        <link href="https://TianhaoXi.github.io/post/xun-zhao-document-quan-bu-jie-dian/">
+        </link>
+        <updated>2020-08-28T07:33:31.000Z</updated>
+        <content type="html"><![CDATA[<p>function getElCount(n){                     //定义文档元素统计函数<br>
+var num = 0;                            //初始化变量<br>
+if(n.nodeType == 1){                    //检查是否为元素节点<br>
+num++;                              //如果是，计数器加1<br>
+console.log(n.nodeName);            //输出元素节点名称<br>
+}<br>
+var son = n.childNodes;                 //获取所有子节点<br>
+for(var i=0 ; i&lt;son.length ; i++){      //遍历每个子元素<br>
+num += getElCount(son[i]);    //递归操作<br>
+}<br>
+return num;                             //返回统计值<br>
+}<br>
+window.onload=function(){<br>
+console.log('文档中元素节点的个数是：'+getElCount(document)+'个')<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[全排列]]></title>
         <id>https://TianhaoXi.github.io/post/quan-pai-lie/</id>
@@ -595,174 +618,6 @@ nignx 支持的最大连接数</p>
 <p>nginx 负载均衡<br>
 upstream myserver{}<br>
 轮询 ip_hash weight  fair</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[webpack常用工具记录]]></title>
-        <id>https://TianhaoXi.github.io/post/webpack-chang-yong-gong-ju-ji-lu/</id>
-        <link href="https://TianhaoXi.github.io/post/webpack-chang-yong-gong-ju-ji-lu/">
-        </link>
-        <updated>2020-08-16T10:44:13.000Z</updated>
-        <content type="html"><![CDATA[<p>webpack: 前端构建工具<br>
-代码转换</p>
-<p>entry： 文件打包起点<br>
-output：打包后的bundle去哪里<br>
-loader：loader处理非js文件 翻译<br>
-plugin 插件：处理更广的任务<br>
-mode：dev 开发模式（本地调试）  production 生产模式</p>
-<p>import htmlwebpackplugin = require(&quot;html-webpack-plugin)</p>
-<p>module.exports={<br>
-entry:  ,<br>
-output:{<br>
-filename:,<br>
-path:,</p>
-<pre><code>},
-
-// loader
-modules:{
-</code></pre>
-<p>rules:[<br>
-{</p>
-<pre><code>    //匹配哪些文件
-    test:/\.css$/,
-    //使用哪些loader
-    use:[
-        //从下到上的顺序
-        'style loader',
-        'css loader',
-
-    ]
-}
-</code></pre>
-<p>],</p>
-<pre><code>},
-
-plugins:[
-    // 默认创建一个空的html文件，自动引入打包输出所有的（js，css）资源
-
-    new htmlwebpackplugin()
-
-],
-mode: 
-</code></pre>
-<p>}</p>
-<p>打包图片资源：<br>
-{<br>
-test:/(jpg|png)<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;}&#039; at position 98: …ash:10].[ext]&#039;
-}̲
-{
-    test:/\.…'>/,
-    loader:&#039;url-loader&#039;,
-    options:{
-        limit:8*1024
-    },
-    name:&#039;[hash:10].[ext]&#039;
-}
-{
-    test:/\.html</span>/,<br>
-loader:'html-loader',</p>
-<p>}</p>
-<p>打包其他资源：<br>
-{<br>
-// 排除这里面的资源<br>
-exclude：<br>
-loader:&quot;file-loader&quot;<br>
-}</p>
-<p>const {resolve} = require('path')</p>
-<p>生产环境 production mode：<br>
-module.export={<br>
-entry:&quot;&quot;,<br>
-output:{<br>
-filename:,<br>
-path:,<br>
-}<br>
-}</p>
-<p>minicssExtractplugin</p>
-<p>post-css loder<br>
-css兼容性处理</p>
-<p>压缩css:<br>
-optimize-css-assets-webpack-plugin</p>
-<p>js语法检查:<br>
-eslint-loader eslint<br>
-module:{<br>
-rules:[<br>
-test /.js$/,<br>
-exclude:/node_modules,<br>
-loader: &quot;eslint-loader&quot;,<br>
-options{<br>
-fix:true,</p>
-<pre><code>    }
-]
-</code></pre>
-<p>}</p>
-<p>js兼容性处理:<br>
-babel-loader</p>
-<p>rules:[<br>
-test:/.js$/,<br>
-exclude:/node_module/<br>
-loader: babel-loader,<br>
-options:{<br>
-presets:['@babel/prest-env']<br>
-}<br>
-]</p>
-<p>全部兼容性处理:<br>
-@babel/polyfill<br>
-core-js 按需加载</p>
-<p>压缩js和html:<br>
-mode:production js自动压缩<br>
-HtmlWebPackPlugin:<br>
-minify</p>
-<p>性能优化：<br>
-开发环境性能优化：<br>
-优化打包构建速度<br>
-优化代码调试</p>
-<p>HMR: hot module replacement<br>
-一个模块更新 只会重新打包这一个模块</p>
-<p>devServer{<br>
-contentBase: resolve(_dirname,'build'),<br>
-compress:true,<br>
-port:3000,<br>
-hot:true</p>
-<p>}</p>
-<p>sourcemap:<br>
-dev-tool:'source-map'<br>
-提供源代码路径，找到错误的位置<br>
-hidden 和 nosource不能找到源代码<br>
-inline和不加可以找到源代码<br>
-速度 (eval&gt;inline&gt;cheap)<br>
-cheap 不会精确到列</p>
-<p>生产环境的优化<br>
-oneof  包括rules<br>
-只会匹配一个loader   优化loader的处理时间</p>
-<p>缓存配置：<br>
-bable缓存:<br>
-rules:[<br>
-test:/.js$/,<br>
-exclude:/node_module/<br>
-loader: babel-loader,<br>
-options:{<br>
-presets:['@babel/prest-env']<br>
-}，<br>
-ChacheDirectory:true;<br>
-]</p>
-<p>文件资源缓存<br>
-用chunkhash只给文件命名</p>
-<p>tree-shaking：<br>
-去除业务中没有使用的</p>
-<p>side-effect: false</p>
-<p>代码分割 code split：<br>
-optimazation:{<br>
-splitChunks{<br>
-chunks:'all'<br>
-}<br>
-}<br>
-能够单独打包node_module<br>
-不会重复打包多次</p>
-<p>lazyloading：</p>
-<p>多进程打包：<br>
-Thread loader<br>
-只有工作消耗时间比较长才需要多进程打包<br>
-不要轻易使用，可能会造成打包时间变慢</p>
 ]]></content>
     </entry>
 </feed>

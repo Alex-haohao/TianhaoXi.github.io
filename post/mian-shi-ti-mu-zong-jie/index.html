@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>面试题目总结 | Alex个人博客</title>
-<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598525906876">
+<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598659801017">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="面试题目总结 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
@@ -25,7 +25,7 @@ getState()       ..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://TianhaoXi.github.io">
-  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1598525906876" alt="">
+  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1598659801017" alt="">
   </a>
   <h1 class="site-title">
     Alex个人博客
@@ -525,6 +525,15 @@ function jsonp_callback(data){
 </script>
 <script src="http://localhost:3002/api/comment?callback=jsonp_callback_function"">
 </script>
+<p>#bind curry<br>
+Function.prototype.bind = function (context) {<br>
+var _this = this<br>
+var args = Array.prototype.slice.call(arguments, 1)</p>
+<pre><code>return function() {
+    return _this.apply(context, args)
+}
+</code></pre>
+<p>}</p>
 
               </div>
               <div class="toc-container">
