@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-29T00:10:34.045Z</updated>
+    <updated>2020-08-29T00:30:59.256Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,194 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[各种排序]]></title>
+        <id>https://TianhaoXi.github.io/post/ge-chong-pai-xu/</id>
+        <link href="https://TianhaoXi.github.io/post/ge-chong-pai-xu/">
+        </link>
+        <updated>2020-08-29T00:30:02.000Z</updated>
+        <content type="html"><![CDATA[<p>// 遍历一遍</p>
+<p>// 二分查找  iteration<br>
+function binary_search(array,key){<br>
+var low = 0;<br>
+var high = array.length -1;</p>
+<pre><code>while(low &lt;=high){
+    var mid = Math.floor((low+high)/2)
+    if(array[mid] ==key){
+        return mid
+    }
+    else if(array[mid]&lt;key){
+        low = mid+1
+    }
+    else if(array[mid]&gt;key){
+        high = mid-1
+    }
+    else{
+        return -1
+    }
+}
+</code></pre>
+<p>}</p>
+<p>// Bubble sort</p>
+<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>function bubbleSort(arr) {<br>
+let len = arr.length;</p>
+<p>for (let i = 0; i &lt; len; i++) {<br>
+for (let j = 0; j &lt; len - i - 1; j++) {<br>
+if (arr[j] &gt; arr[j + 1]) {  // 相邻元素两两对比<br>
+swap(array,j,j+1)<br>
+}<br>
+}<br>
+}</p>
+<p>return arr;<br>
+}</p>
+<p>var array = [3,5,1,2,3,5,6,7]<br>
+var result = bubbleSort(array);<br>
+console.log(result)</p>
+<p>// selection sort</p>
+<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>function selection_sort(array){<br>
+var len = array.length<br>
+if(array==null || array.length&lt;=2){<br>
+return array<br>
+}</p>
+<pre><code>for (let i = 0; i &lt; len; i++) {
+    var min = i
+    for (let j = i+1; j &lt; len; j++) {
+        if(array[j]&lt;array[min]){
+            min =j
+        }
+    }
+              swap(array,i,min)
+
+}
+</code></pre>
+<p>}<br>
+var array = [3,5,1,2,3,5,6,7]<br>
+var result = selection_sort(array);<br>
+console.log(array)</p>
+<p>//insertion sort</p>
+<p>function insertion_sort(arr){<br>
+for (var i = 1, length = arr.length; i &lt; length; i++) {<br>
+var key = arr[i];<br>
+var j = i - 1;<br>
+while (j &gt;= 0 &amp;&amp; arr[j] &gt; key) {<br>
+arr[j + 1] = arr[j];<br>
+j--;<br>
+}<br>
+arr[j + 1] = key;<br>
+}<br>
+return arr;</p>
+<p>}<br>
+var array = [3,5,1,2,3,5,6,7]<br>
+var result = insertion_sort(array);<br>
+console.log(result)</p>
+<p>// merge Sort<br>
+function mergeSort(arr) { // 采用自上而下的递归方法<br>
+var length = arr.length;<br>
+if (length &lt; 2) {<br>
+return arr;<br>
+}</p>
+<pre><code>var middle = Math.floor(length / 2);
+var left = arr.slice(0, middle);
+var right = arr.slice(middle);
+
+return merge(mergeSort(left), mergeSort(right));
+</code></pre>
+<p>}</p>
+<p>function merge(left, right) {<br>
+var result = [];<br>
+console.log('left', left, 'right', right);<br>
+while (left.length &amp;&amp; right.length) {<br>
+if (left[0] &lt;= right[0]) {<br>
+result.push(left.shift());<br>
+} else {<br>
+result.push(right.shift());<br>
+}<br>
+}</p>
+<pre><code>while (left.length) {
+  result.push(left.shift());
+}
+
+while (right.length) {
+  result.push(right.shift());
+}
+return result;
+</code></pre>
+<p>}</p>
+<p>var array = [3,5,1,2,3,5,6,7]<br>
+var result = mergeSort(array);<br>
+console.log(result)</p>
+<p>//  对数器</p>
+<p>//要测试的方法<br>
+function insertSort(arr) {<br>
+for (let i = 1; i &lt; arr.length; i++) {<br>
+for (let j = i - 1; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[j + 1]; j--) {<br>
+[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];<br>
+}<br>
+}<br>
+}<br>
+//正确的方法<br>
+function rightMethod(arr) {<br>
+arr.sort((a, b)=&gt;a - b);<br>
+}<br>
+//随机数组生成器，size为最大长度，value为最大值<br>
+function generateRandomArray(size, value) {<br>
+//生成长度随机的数组<br>
+let arr = new Array(Math.floor((size + 1) * Math.random()));<br>
+for (let i = 0; i &lt; arr.length; i++) {<br>
+arr[i] = Math.floor((value + 1) * Math.random());<br>
+}<br>
+return arr;<br>
+}<br>
+//拷贝数组方法<br>
+function copyArray(arr) {<br>
+if (arr == null) {<br>
+return null;<br>
+}<br>
+return [].concat(arr);<br>
+}<br>
+//比对方法<br>
+function isEqual(arr1, arr2) {<br>
+if ((arr1 == null &amp;&amp; arr2 != null ) || (arr1 != null &amp;&amp; arr2 == null)) {<br>
+return false;<br>
+}<br>
+if (arr1 == null &amp;&amp; arr2 == null) {<br>
+return true;<br>
+}<br>
+if (arr1.length != arr2.length) {<br>
+return false;<br>
+}<br>
+for (let i = 0; i &lt; arr1.length; i++) {<br>
+if (arr1[i] != arr2[i]) {<br>
+return false<br>
+}<br>
+}<br>
+return true;<br>
+}<br>
+//测试<br>
+function Test() {<br>
+let testTimes = 5000;<br>
+let size = 10;<br>
+let value = 100;<br>
+let succeed = true;<br>
+for (let i = 0; i &lt; testTimes; i++) {<br>
+let arr1 = generateRandomArray(size, value);<br>
+let arr2 = copyArray(arr1);<br>
+let arr3 = copyArray(arr1);<br>
+insertSort(arr1);<br>
+rightMethod(arr2);<br>
+if (!isEqual(arr1, arr2)) {<br>
+succeed = false;<br>
+console.log(arr3);<br>
+break;<br>
+}<br>
+}<br>
+console.log(succeed ? &quot;nice&quot; : &quot;Fucking fucked&quot;);<br>
+}<br>
+Test();</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[寻找document全部节点]]></title>
         <id>https://TianhaoXi.github.io/post/xun-zhao-document-quan-bu-jie-dian/</id>
@@ -931,90 +1119,6 @@ console.log(&quot;failed&quot;)<br>
 <p>JavaScript语言为例，它是一种单线程语言</p>
 <p>就是在程序中设置两个线程：一个负责程序本身的运行，称为&quot;主线程&quot;；另一个负责主线程与其他进程（主要是各种I/O操作）的通信，被称为&quot;Event Loop线程&quot;（可以译为&quot;消息线程&quot;）。</p>
 <p>js DOM:</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[css的小知识点]]></title>
-        <id>https://TianhaoXi.github.io/post/css-de-xiao-zhi-shi-dian/</id>
-        <link href="https://TianhaoXi.github.io/post/css-de-xiao-zhi-shi-dian/">
-        </link>
-        <updated>2020-08-16T10:52:47.000Z</updated>
-        <content type="html"><![CDATA[<p>4种选择器：. class    # id     p{} type    * all<br>
-标签选择器  属性选择器</p>
-<p>div&gt;span{}   用&gt;嵌套</p>
-<p>width可以有 100%  height只有固定值</p>
-<p>background-image: url()<br>
-background-repeat<br>
-background-size: cover or 100%<br>
-background-attachment: fixed | local | scoll</p>
-<p>color 最好不要用颜色名称  rgba  a：透明度0-1<br>
-opacity 透明度 0-1</p>
-<p>text-overflow overflow: hidden</p>
-<p>clear float:<br>
-在添加float的parent添加一个{clear:left | right | both   overflow: hidden}</p>
-<p>visibility: hidden 不可见时依然占位  display:none 不占位</p>
-<p>position<br>
-relative: left right top bottom</p>
-<p>伪类：a: link  a:visited  a:hover  a:active</p>
-<p>article :first-child<br>
-article: nth-child(2n)</p>
-<p>选择器优先级<br>
-权重 id:100 class:10 标签:1 *:0 权重是可以叠加的  行级/内联的权重最高</p>
-<p>1 选择器优先级内联样式 &gt; ID 选择器 &gt; 类选择器 = 属性选择器 = 伪类选择器 &gt; 标签选择器<br>
-强制提高优先级 !important<br>
-继承没有权重</p>
-<p>字体  1em  = 100%</p>
-<p>盒子模型</p>
-<p>元素居中： margin-left:auto margin-right:auto<br>
-margin 负值 溢出盒子外</p>
-<p>box-sizing: border-box  不会管padding 和margin增加的</p>
-<p>outline 不会占位  border会</p>
-<p>display:none<br>
-visibility: hidden<br>
-opacity: 0</p>
-<p>h2::after{</p>
-<p>}</p>
-<p>浮动 float<br>
-float:left<br>
-行级元素 float后会变成块级元素<br>
-清除浮动 clear: left||right||both<br>
-在浮动元素下追加一个 div class=&quot;clear_fix&quot; 来清除浮动<br>
-在父元素后加一个::after<br>
-main::after{<br>
-clear:both;<br>
-display:block;<br>
-content:&quot;&quot;<br>
-}</p>
-<p>或者 在main{<br>
-overflow:hidden<br>
-}</p>
-<p>css定位<br>
-relative 相对他在文档中的位置定一个偏移量<br>
-如果父级有定位属性，那么下面的定位将参照父级<br>
-fix 相对于页面</p>
-<p>元素居中的几种方式</p>
-<p>flex:<br>
-flex-direction<br>
-flex-wrap :wrap<br>
-justify-content: 对主轴进行排列  center ||  space-between<br>
-align-item:</p>
-<p>绘制三角形：<br>
-section{<br>
-width: 0;<br>
-height:0;<br>
-border-left: 50px solid transparent ;<br>
-border-right: 50px solid transparent ;<br>
-border-bottom: 50px solid black ;<br>
-border-top: 50px solid transparent ;<br>
-}</p>
-<p>绘制梯形：<br>
-section{<br>
-width: 100px;<br>
-height:0;<br>
-border-left: 37px solid transparent ;<br>
-border-right: 37px solid transparent ;<br>
-border-top: 50px solid red ;<br>
-}</p>
 ]]></content>
     </entry>
 </feed>

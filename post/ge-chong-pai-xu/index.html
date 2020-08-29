@@ -2,22 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>merge sort | Alex个人博客</title>
+<title>各种排序 | Alex个人博客</title>
 <link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598661057047">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="merge sort | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="各种排序 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="// merge Sort
-function mergeSort(arr) { // 采用自上而下的递归方法
-var length = arr.length;
-if (length &lt; 2) {
-return arr;
-}
-var m..." />
+    <meta name="description" content="// 遍历一遍
+// 二分查找  iteration
+function binary_search(array,key){
+var low = 0;
+var high = array.length -1;
+while(low &lt;=hi..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -84,21 +83,97 @@ var m..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              merge sort
+              各种排序
             </h2>
             <div class="post-info">
               <span>
-                2020-08-22
+                2020-08-29
               </span>
               <span>
-                1 min read
+                4 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>// merge Sort<br>
+                <p>// 遍历一遍</p>
+<p>// 二分查找  iteration<br>
+function binary_search(array,key){<br>
+var low = 0;<br>
+var high = array.length -1;</p>
+<pre><code>while(low &lt;=high){
+    var mid = Math.floor((low+high)/2)
+    if(array[mid] ==key){
+        return mid
+    }
+    else if(array[mid]&lt;key){
+        low = mid+1
+    }
+    else if(array[mid]&gt;key){
+        high = mid-1
+    }
+    else{
+        return -1
+    }
+}
+</code></pre>
+<p>}</p>
+<p>// Bubble sort</p>
+<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>function bubbleSort(arr) {<br>
+let len = arr.length;</p>
+<p>for (let i = 0; i &lt; len; i++) {<br>
+for (let j = 0; j &lt; len - i - 1; j++) {<br>
+if (arr[j] &gt; arr[j + 1]) {  // 相邻元素两两对比<br>
+swap(array,j,j+1)<br>
+}<br>
+}<br>
+}</p>
+<p>return arr;<br>
+}</p>
+<p>var array = [3,5,1,2,3,5,6,7]<br>
+var result = bubbleSort(array);<br>
+console.log(result)</p>
+<p>// selection sort</p>
+<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
+<p>function selection_sort(array){<br>
+var len = array.length<br>
+if(array==null || array.length&lt;=2){<br>
+return array<br>
+}</p>
+<pre><code>for (let i = 0; i &lt; len; i++) {
+    var min = i
+    for (let j = i+1; j &lt; len; j++) {
+        if(array[j]&lt;array[min]){
+            min =j
+        }
+    }
+              swap(array,i,min)
+
+}
+</code></pre>
+<p>}<br>
+var array = [3,5,1,2,3,5,6,7]<br>
+var result = selection_sort(array);<br>
+console.log(array)</p>
+<p>//insertion sort</p>
+<p>function insertion_sort(arr){<br>
+for (var i = 1, length = arr.length; i &lt; length; i++) {<br>
+var key = arr[i];<br>
+var j = i - 1;<br>
+while (j &gt;= 0 &amp;&amp; arr[j] &gt; key) {<br>
+arr[j + 1] = arr[j];<br>
+j--;<br>
+}<br>
+arr[j + 1] = key;<br>
+}<br>
+return arr;</p>
+<p>}<br>
+var array = [3,5,1,2,3,5,6,7]<br>
+var result = insertion_sort(array);<br>
+console.log(result)</p>
+<p>// merge Sort<br>
 function mergeSort(arr) { // 采用自上而下的递归方法<br>
 var length = arr.length;<br>
 if (length &lt; 2) {<br>
@@ -134,6 +209,74 @@ return result;
 <p>var array = [3,5,1,2,3,5,6,7]<br>
 var result = mergeSort(array);<br>
 console.log(result)</p>
+<p>//  对数器</p>
+<p>//要测试的方法<br>
+function insertSort(arr) {<br>
+for (let i = 1; i &lt; arr.length; i++) {<br>
+for (let j = i - 1; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[j + 1]; j--) {<br>
+[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];<br>
+}<br>
+}<br>
+}<br>
+//正确的方法<br>
+function rightMethod(arr) {<br>
+arr.sort((a, b)=&gt;a - b);<br>
+}<br>
+//随机数组生成器，size为最大长度，value为最大值<br>
+function generateRandomArray(size, value) {<br>
+//生成长度随机的数组<br>
+let arr = new Array(Math.floor((size + 1) * Math.random()));<br>
+for (let i = 0; i &lt; arr.length; i++) {<br>
+arr[i] = Math.floor((value + 1) * Math.random());<br>
+}<br>
+return arr;<br>
+}<br>
+//拷贝数组方法<br>
+function copyArray(arr) {<br>
+if (arr == null) {<br>
+return null;<br>
+}<br>
+return [].concat(arr);<br>
+}<br>
+//比对方法<br>
+function isEqual(arr1, arr2) {<br>
+if ((arr1 == null &amp;&amp; arr2 != null ) || (arr1 != null &amp;&amp; arr2 == null)) {<br>
+return false;<br>
+}<br>
+if (arr1 == null &amp;&amp; arr2 == null) {<br>
+return true;<br>
+}<br>
+if (arr1.length != arr2.length) {<br>
+return false;<br>
+}<br>
+for (let i = 0; i &lt; arr1.length; i++) {<br>
+if (arr1[i] != arr2[i]) {<br>
+return false<br>
+}<br>
+}<br>
+return true;<br>
+}<br>
+//测试<br>
+function Test() {<br>
+let testTimes = 5000;<br>
+let size = 10;<br>
+let value = 100;<br>
+let succeed = true;<br>
+for (let i = 0; i &lt; testTimes; i++) {<br>
+let arr1 = generateRandomArray(size, value);<br>
+let arr2 = copyArray(arr1);<br>
+let arr3 = copyArray(arr1);<br>
+insertSort(arr1);<br>
+rightMethod(arr2);<br>
+if (!isEqual(arr1, arr2)) {<br>
+succeed = false;<br>
+console.log(arr3);<br>
+break;<br>
+}<br>
+}<br>
+console.log(succeed ? &quot;nice&quot; : &quot;Fucking fucked&quot;);<br>
+}<br>
+Test();</p>
 
               </div>
               <div class="toc-container">
@@ -146,9 +289,9 @@ console.log(result)</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://TianhaoXi.github.io/post/matrix_clodckspin/">
+            <a href="https://TianhaoXi.github.io/post/xun-zhao-document-quan-bu-jie-dian/">
               <h3 class="post-title">
-                matrix_clodckspin
+                寻找document全部节点
               </h3>
             </a>
           </div>
