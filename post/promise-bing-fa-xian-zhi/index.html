@@ -2,21 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>quick sort | Alex个人博客</title>
+<title>Promise 并发限制 | Alex个人博客</title>
 <link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598938615873">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="quick sort | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Promise 并发限制 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="// quick sort
-function quicksort(array){
-if(array.length&lt;2){
-return array;
-}
-var piviotindex = Math.floor(array.lengt..." />
+    <meta name="description" content="function asyncPool(poolLimit, array, iteratorFn) {
+let i = 0;
+const ret = [];
+const executing = [];
+const enqueue = func..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -83,73 +82,48 @@ var piviotindex = Math.floor(array.lengt..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              quick sort
+              Promise 并发限制
             </h2>
             <div class="post-info">
               <span>
-                2020-08-22
+                2020-08-31
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>// quick sort</p>
-<p>function quicksort(array){<br>
-if(array.length&lt;2){<br>
-return array;<br>
+                <p>function asyncPool(poolLimit, array, iteratorFn) {<br>
+let i = 0;<br>
+const ret = [];<br>
+const executing = [];<br>
+const enqueue = function () {<br>
+// 边界处理，array为空数组<br>
+if (i === array.length) {<br>
+return Promise.resolve();<br>
+}<br>
+// 每调一次enqueue，初始化一个promise<br>
+const item = array[i++];<br>
+const p = Promise.resolve().then(() =&gt; iteratorFn(item, array));<br>
+// 放入promises数组<br>
+ret.push(p);<br>
+// promise执行完毕，从executing数组中删除<br>
+const e = p.then(() =&gt; executing.splice(executing.indexOf(e), 1));<br>
+// 插入executing数字，表示正在执行的promise<br>
+executing.push(e);<br>
+// 使用Promise.rece，每当executing数组中promise数量低于poolLimit，就实例化新的promise并执行<br>
+let r = Promise.resolve();<br>
+if (executing.length &gt;= poolLimit) {<br>
+r = Promise.race(executing);<br>
+}<br>
+// 递归，直到遍历完array<br>
+return r.then(() =&gt; enqueue());<br>
+};<br>
+return enqueue().then(() =&gt; Promise.all(ret));<br>
 }</p>
-<pre><code>var piviotindex = Math.floor(array.length/2)
-var pivot = array.splice(piviotindex,1)[0];
-var left =[];
-var right = [];
-
-for(var i =0;i&lt;array.length;i++){
-    if(array[i]&lt;pivot){
-        left.push(array[i])
-    }
-    else{
-        right.push(array[i])
-    }
-}
-
-return quicksort(left).concat([pivot],quicksort(right))
-</code></pre>
-<p>}</p>
-<p>////////////////////<br>
-function quickSort(arr, left, right) {<br>
-if (Object.prototype.toString.call(arr).slice(8, -1) === 'Array' &amp;&amp; typeof length === 'number' &amp;&amp; typeof right === 'number') {</p>
-<pre><code>  if (left &lt; right) {
-    var pivot = arr[left]; // 起始位置
-    var setPos = left + 1; // 设置的位置
-    for (var i = left + 1; i &lt;= right; i++) {
-      if (arr[i] &lt; pivot) {
-        swap(arr,i,setPos)
-        setPos++;
-      }
-    }
-    // 循环完成之后将key与 pos-1的位置交换
-    swap(arr,left,setPos-1)
-
-    // console.log('每一次排序', '当前key值===&gt;', key, '排序完成当前数组===&gt;', JSON.stringify(arr));
-
-    quickSort(arr, left, setPos - 2);
-    quickSort(arr, setPos, right);
-    // console.log('arr=======&gt;', arr);
-  }
-} else {
-  return 'array is not an Array or left or right is not a number!';
-}
-return arr;
-</code></pre>
-<p>}</p>
-<p>function swap(obj, a, b) { var tmp = obj[a]; obj[a] = obj[b]; obj[b] = tmp; }</p>
-<p>var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];<br>
-// var arr = [7, 3, 2, 10, 13, 8, 5];<br>
-console.log(quickSort(arr, 0, arr.length - 1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]</p>
 
               </div>
               <div class="toc-container">
@@ -162,9 +136,9 @@ console.log(quickSort(arr, 0, arr.length - 1));//[2, 3, 4, 5, 15, 19, 26, 27, 36
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://TianhaoXi.github.io/post/heap-sort/">
+            <a href="https://TianhaoXi.github.io/post/ge-chong-pai-xu/">
               <h3 class="post-title">
-                Heap sort
+                各种排序
               </h3>
             </a>
           </div>

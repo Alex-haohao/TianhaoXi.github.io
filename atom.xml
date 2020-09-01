@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://TianhaoXi.github.io</id>
     <title>Alex个人博客</title>
-    <updated>2020-08-29T01:49:38.706Z</updated>
+    <updated>2020-09-01T05:36:57.593Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://TianhaoXi.github.io"/>
     <link rel="self" href="https://TianhaoXi.github.io/atom.xml"/>
@@ -10,6 +10,42 @@
     <logo>https://TianhaoXi.github.io/images/avatar.png</logo>
     <icon>https://TianhaoXi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alex个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Promise 并发限制]]></title>
+        <id>https://TianhaoXi.github.io/post/promise-bing-fa-xian-zhi/</id>
+        <link href="https://TianhaoXi.github.io/post/promise-bing-fa-xian-zhi/">
+        </link>
+        <updated>2020-08-31T02:50:13.000Z</updated>
+        <content type="html"><![CDATA[<p>function asyncPool(poolLimit, array, iteratorFn) {<br>
+let i = 0;<br>
+const ret = [];<br>
+const executing = [];<br>
+const enqueue = function () {<br>
+// 边界处理，array为空数组<br>
+if (i === array.length) {<br>
+return Promise.resolve();<br>
+}<br>
+// 每调一次enqueue，初始化一个promise<br>
+const item = array[i++];<br>
+const p = Promise.resolve().then(() =&gt; iteratorFn(item, array));<br>
+// 放入promises数组<br>
+ret.push(p);<br>
+// promise执行完毕，从executing数组中删除<br>
+const e = p.then(() =&gt; executing.splice(executing.indexOf(e), 1));<br>
+// 插入executing数字，表示正在执行的promise<br>
+executing.push(e);<br>
+// 使用Promise.rece，每当executing数组中promise数量低于poolLimit，就实例化新的promise并执行<br>
+let r = Promise.resolve();<br>
+if (executing.length &gt;= poolLimit) {<br>
+r = Promise.race(executing);<br>
+}<br>
+// 递归，直到遍历完array<br>
+return r.then(() =&gt; enqueue());<br>
+};<br>
+return enqueue().then(() =&gt; Promise.all(ret));<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[各种排序]]></title>
         <id>https://TianhaoXi.github.io/post/ge-chong-pai-xu/</id>
@@ -1063,72 +1099,82 @@ Controller（控制器）：是应用程序中处理用户交互的部分。<br>
 通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据。<br>
 mvvm:<br>
 View的变动，自动反映在 ViewModel，反之亦然。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[js的小知识点]]></title>
-        <id>https://TianhaoXi.github.io/post/js-de-xiao-zhi-shi-dian/</id>
-        <link href="https://TianhaoXi.github.io/post/js-de-xiao-zhi-shi-dian/">
-        </link>
-        <updated>2020-08-16T10:53:11.000Z</updated>
-        <content type="html"><![CDATA[<p>变量提升：预先解析代码  var会先声明<br>
-使用let 会有临时性死区 需先声明再使用</p>
-<p>var 是 globle scope<br>
-let const 是 locol scope</p>
-<p>匿名函数不会有函数提升 具名函数有函数提升</p>
-<p>使用call 和 bind 会立即执行<br>
-bind不会立即执行，相当于生成一个新函数</p>
-<p>全局函数不会被回收<br>
-作用域scope:</p>
-<p>每一次调用一个函数就会新开一份内存地址</p>
-<p>闭包 读取其他函数内部变量的函数<br>
-javascript中，只有函数内部的子函数才能读取局部变量</p>
-<p>this指调用函数的对象</p>
-<p>object.assign<br>
-{...hd}</p>
-<p>json prototype:</p>
-<p>prototype:<br>
-a instanceof b  like: Array object 构造函数<br>
-isPrototypeOf  一个object是否是另一个object的prototype<br>
-in 会检查自己和prototype chain  hasOwnProperty 只会检查自己的property<br>
-继承是prototype的继承，不是constructor的继承</p>
-<p>fucntion 可以作为object  <em>proto</em></p>
-<p>原型和对象原型</p>
-<p>可以用 Symble() 来保护property<br>
-pretected = Symble();<br>
-this[pretected].name = name;</p>
-<p>用WeakMap 保护property<br>
-const host = new WeakMap();</p>
-<h1 id="private-property">private property</h1>
-<p>super是调用parent的方法</p>
-<p>regexp<br>
-断言匹配:(?= ) 后面是什么<br>
-(?&lt;= )前面是什么<br>
-(?! ) 后面不是什么<br>
-(?&lt;=) 前面不是什么</p>
-<p>promise:</p>
-<p>new Promise((resolve,reject) =&gt;{<br>
-resolve(&quot;yesyes&quot;)<br>
-}).then(<br>
-value=&gt;{<br>
-console.log(&quot;success&quot;)<br>
-},<br>
-reason =&gt;{<br>
-console.log(&quot;failed&quot;)<br>
-}<br>
-)</p>
-<p>宏任务与微任务的顺序</p>
-<p>封装ajax:</p>
-<p>function</p>
-<p>event loop:<br>
-一般情况下，一个进程一次只能执行一个任务。</p>
-<p>如果有很多任务需要执行，不外乎三种解决方法。</p>
-<p>（1）排队。因为一个进程一次只能执行一个任务，只好等前面的任务执行完了，再执行后面的任务。</p>
-<p>（2）新建进程。使用fork命令，为每个任务新建一个进程。</p>
-<p>（3）新建线程。因为进程太耗费资源，所以如今的程序往往允许一个进程包含多个线程，由线程去完成任务。（进程和线程的详细解释，请看这里。）</p>
-<p>JavaScript语言为例，它是一种单线程语言</p>
-<p>就是在程序中设置两个线程：一个负责程序本身的运行，称为&quot;主线程&quot;；另一个负责主线程与其他进程（主要是各种I/O操作）的通信，被称为&quot;Event Loop线程&quot;（可以译为&quot;消息线程&quot;）。</p>
-<p>js DOM:</p>
+<h1 id="事件委托">事件委托</h1>
+<p>window.onload = function(){<br>
+　　var oUl = document.getElementById(&quot;ul1&quot;);<br>
+　　oUl.onclick = function(ev){<br>
+　　　　var ev = ev || window.event;<br>
+　　　　var target = ev.target || ev.srcElement;<br>
+　　　　if(target.nodeName.toLowerCase() == 'li'){<br>
+　 　　　　　　 alert(123);<br>
+　　　　　　　  alert(target.innerHTML);<br>
+　　　　}<br>
+　　}<br>
+}</p>
+<h1 id="箭头函数">箭头函数：</h1>
+<p>ES6 增加了箭头函数，基本语法为<br>
+let func = value =&gt; value;</p>
+<p>相当于</p>
+<p>let func = function (value) {</p>
+<p>return value;</p>
+<p>};</p>
+<p>箭头函数与普通函数的区别在于：</p>
+<p>1、箭头函数没有this，所以需要通过查找作用域链来确定this的值，这就意味着如果箭头函数被非箭头函数包含，this绑定的就是最近一层非箭头函数的this，</p>
+<p>2、箭头函数没有自己的arguments对象，但是可以访问外围函数的arguments对象</p>
+<p>3、不能通过new关键字调用，同样也没有new.target值和原型</p>
+<p>#简单讲一讲ES6的一些新特性</p>
+<p>ES6在变量的声明和定义方面增加了let、const声明变量，有局部变量的概念，赋值中有比较吸引人的结构赋值，同时ES6对字符串、 数组、正则、对象、函数等拓展了一些方法，如字符串方面的模板字符串、函数方面的默认参数、对象方面属性的简洁表达方式，ES6也 引入了新的数据类型symbol，新的数据结构set和map,symbol可以通过typeof检测出来，为解决异步回调问题，引入了promise和 generator，还有最为吸引人了实现Class和模块，通过Class可以更好的面向对象编程，使用模块加载方便模块化编程，当然考虑到 浏览器兼容性，我们在实际开发中需要使用babel进行编译<br>
+重要的特性：</p>
+<p>块级作用域：ES5只有全局作用域和函数作用域，块级作用域的好处是不再需要立即执行的函数表达式，循环体中的闭包不再有问题</p>
+<p>rest参数：用于获取函数的多余参数，这样就不需要使用arguments对象了，</p>
+<p>promise:一种异步编程的解决方案，比传统的解决方案回调函数和事件更合理强大</p>
+<p>模块化：其模块功能主要有两个命令构成，export和import，export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能</p>
+<p>文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展标志语言的标准编程接口。在网页上，组织页面（或文档）的对象被组织在一个树形结构中，用来表示文档中对象的标准模型就称为DOM。</p>
+<p>webpack是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源（图片、js文件、css文件等）都看成模块，通过loader（加载器）和plugins（插件）对资源进行处理，打包成符合生产环境部署的前端资源</p>
+<p>redux<br>
+在组件化的应用中，会有着大量的组件层级关系，深嵌套的组件与浅层父组件进行数据交互，变得十分繁琐困难。而redux，站在一个服务级别的角度，可以毫无阻碍地将应用的状态传递到每一个层级的组件中。redux就相当于整个应用的管家。<br>
+提供 getState() 方法获取 state；<br>
+提供 dispatch(action) 方法更新 state；<br>
+通过 subscribe(listener) 注册监听器;<br>
+React 是一个用于构建用户界面的 JAVASCRIPT 库。React主要用于构建UI，很多人认为 React 是 MVC 中的 V（视图）<br>
+React特点有：</p>
+<p>1.声明式设计 −React采用声明范式，可以轻松描述应用。</p>
+<p>2.高效 −React通过对DOM的模拟，最大限度地减少与DOM的交互。</p>
+<p>3.灵活 −React可以与已知的库或框架很好地配合。</p>
+<p>4.JSX − JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。</p>
+<p>5.组件 − 通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。</p>
+<p>6.单向响应的数据流 − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。<br>
+在React中，数据是单向流动的，是从上向下的方向，即从父组件到子组件的方向。<br>
+state和props是其中重要的概念，如果顶层组件初始化props，那么React会向下遍历整颗组件树，重新渲染相关的子组件。其中state表示的是每个组件中内部的的状态，这些状态只在组件内部改变。<br>
+把组件看成是一个函数，那么他接受props作为参数，内部由state作为函数的内部参数，返回一个虚拟dom的实现。<br>
+diff算法，diff算法有三种优化形式：<br>
+tree diff：将新旧两颗DOM树按照层级遍历，只对同级的DOM节点进行比较，即同一父节点下的所有子节点，当发现节点已经不存在，则该节点及其子节点会被完全删除，不会进一步比较</p>
+<p>component diff：不同组件之间的对比，如果组件类型相同，暂不更新，否则删除旧的组件，再创建一个新的组件，插入到删除组件的位置</p>
+<p>element diff:在类型相同的组件内，再继续对比组件内部的元素，</p>
+<p>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。 经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。 在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。 在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
+<p>单例模式：在它的核心结构中值包含一个被称为单例的特殊类。一个类只有一个实例，即一个类只有一个对象实例。<br>
+工厂模式：在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。</p>
+<p>发布订阅模式：在软件架构中，发布订阅是一种消息范式，消息的发送者（称为发布者）不会将消息直接发送给特定的接收者（称为订阅者）。而是将发布的消息分为不同的类别，无需了解哪些订阅者（如果有的话）可能存在。同样的，订阅者可以表达对一个或多个类别的兴趣，只接收感兴趣的消息，无需了解哪些发布者（如果有的话）存在。</p>
+<h1 id="前端性能优化">前端性能优化</h1>
+<p>前端性能优化有七大手段：减少请求数量，减少资源大小，优化网络连接，优化资源加载，减少重绘回流，使用性能更好的API和构建优化<br>
+减少请求数量：通过减少重定向，使用缓存，不适用CSS@import，避免使用空的src和href等手段</p>
+<p>减少资源大小：通过压缩HTML，CSS，JS，图片，此外在安卓下可以使用webp格式的图片，它具有更优的图像数据压缩算法，能带来更小的图片体积，还可以开启gzip,gzip编码是以后总用来改进web应用程序性能的技术，</p>
+<p>优化网络连接：使用CDN，使用DNS预解析，并行连接，</p>
+<p>优化资源加载，通过优化资源加载位置和时机，使用资源预加载preload和资源预读取prefetch</p>
+<p>减少重绘回流，1：避免使用层级较深的CSS选择器，以提高CSS渲染效率2、避免使用CSS表达式，3、给元素适当的定义高度或最小高度，否则元素的动态内容载入时，会出现页面晃动，造成回流，4、不要使用table布局，5、能用CSS实现的效果，尽量使用CSS而不用JS实现</p>
+<p>使用性能更好的api,</p>
+<p>随机创造hex<br>
+let hex = ()=&gt;{<br>
+return res = &quot;#&quot;+Math.floor(Math.random()*0xffffff).toString(16)<br>
+}</p>
+<p>hex2rgb<br>
+function hexToRgb(hex) {<br>
+return &quot;rgb(&quot; + parseInt(&quot;0x&quot; + hex.slice(1, 3)) + &quot;,&quot; + parseInt(&quot;0x&quot; + hex.slice(3, 5)) + &quot;,&quot; + parseInt(&quot;0x&quot; + hex.slice(5, 7))<br>
+}</p>
+<p>使用new调用函数时，会执行[[construct]]方法：<br>
+(1) 在内存中创建一个继承自 fn.prototype 的新对象<br>
+(2) 把函数体的this指向新对象，并执行函数体。<br>
+(3) 默认返回新对象。如果构造函数指定的返回值为复杂类型，会覆盖掉默认返回值。</p>
 ]]></content>
     </entry>
 </feed>
