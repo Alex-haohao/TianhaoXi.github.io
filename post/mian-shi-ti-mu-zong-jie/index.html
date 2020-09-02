@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>面试题目总结 | Alex个人博客</title>
-<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1598938615873">
+<link rel="shortcut icon" href="https://TianhaoXi.github.io/favicon.ico?v=1599012674304">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://TianhaoXi.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="面试题目总结 | Alex个人博客 - Atom Feed" href="https://TianhaoXi.github.io/atom.xml">
@@ -25,7 +25,7 @@ getState()       ..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://TianhaoXi.github.io">
-  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1598938615873" alt="">
+  <img class="avatar" src="https://TianhaoXi.github.io/images/avatar.png?v=1599012674304" alt="">
   </a>
   <h1 class="site-title">
     Alex个人博客
@@ -620,6 +620,165 @@ return &quot;rgb(&quot; + parseInt(&quot;0x&quot; + hex.slice(1, 3)) + &quot;,&q
 (1) 在内存中创建一个继承自 fn.prototype 的新对象<br>
 (2) 把函数体的this指向新对象，并执行函数体。<br>
 (3) 默认返回新对象。如果构造函数指定的返回值为复杂类型，会覆盖掉默认返回值。</p>
+<p>Function.prototype.mybine = function(context){<br>
+let self = this;<br>
+return function(){<br>
+self.apply(context,arguments)<br>
+}<br>
+}</p>
+<p>Array.prototype.myfilter = function(fn){<br>
+let array = [];<br>
+for(let i=0;i&lt;this.length;i++){<br>
+let item = this[i];<br>
+if(fn(item,i,this)){<br>
+array.push(this[i])<br>
+}<br>
+}<br>
+return array;<br>
+}</p>
+<p>Array.prototype.fakeMap = function(fn) {<br>
+let arr = this;<br>
+let temp = [];<br>
+for(let i=0;i&lt;arr.length;i++){<br>
+let result = fn(arr[i],i,arr);<br>
+temp.push(result);<br>
+}<br>
+return temp;<br>
+}</p>
+<h1 id="css-position有几种属性">CSS position有几种属性</h1>
+<p>position: static; 的元素不会被特殊的定位<br>
+fixed：元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动，相当一个壁纸标签一样一动不动像镶嵌在屏幕里一样，<br>
+相对定位，是相对于其原本的位置来定位的。元素仍处于文档流中，定位是相对于原本自身的位置<br>
+absolute：元素会脱离文档流，定位是相对于离它最近的且不是static定位的父元素而言，若该元素没有设置宽度，则宽度由元素里面的内容决定，且宽度不会影响父元素，定位为absolution后，原来的位置相当于是空的，下面的的元素会来占据。<br>
+sticky：<br>
+必须制定 top、bottom 、left 、 right 4个值之一，否则只会处于相对定位；<br>
+父元素的高度不能低于sticky 元素的高度；<br>
+sticky 元素仅在其父元素内生效；</p>
+<p>for-of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for-in循环</p>
+<p>标准盒模型 box-sizing: content-box<br>
+content-box:<br>
+width = content width;<br>
+height = content height</p>
+<p>IE盒模型 box-sizing: border-box<br>
+border-box:<br>
+width = border + padding + content width<br>
+heigth = border + padding + content heigth</p>
+<p>赋值方法 （Mutator methods）<br>
+pop 和 push shift 和 unshift splice reverse sort<br>
+访问方法（Accessor methods）：<br>
+join slice concat</p>
+<p>迭代方法（Iteration methods）<br>
+forEach forEach是无法通过break来中断数组的遍历。<br>
+map</p>
+<p>由于继承而发生样式冲突时，最近祖先获胜（最近原则）。<br>
+继承的样式和直接指定的样式冲突时，直接指定的样式获胜（最直接原则）。<br>
+直接指定的样式发生冲突时，样式权值高者获胜。<br>
+css选择器 权值<br>
+标签选择器 1<br>
+类选择器 10<br>
+ID选择器 100<br>
+内联样式 1000<br>
+伪元素(:first-child等) 1<br>
+伪类(:link等) 10<br>
+可以看到，内联样式的权值&gt;&gt;ID选择器&gt;&gt;类选择器&gt;&gt;标签选择器，除此以外，后代选择器的权值为每项权值之和，比如”<br>
+样式权值相同时，后者获胜。<br>
+!important的样式属性不被覆盖。</p>
+<h1 id="事件委托-2">事件委托</h1>
+<p>window.onload = function(){<br>
+　　var oUl = document.getElementById(&quot;ul1&quot;);<br>
+　　oUl.onclick = function(ev){<br>
+　　　　var ev = ev || window.event;<br>
+　　　　var target = ev.target || ev.srcElement;<br>
+　　　　if(target.nodeName.toLowerCase() == 'li'){<br>
+　 　　　　　　 alert(123);<br>
+　　　　　　　  alert(target.innerHTML);<br>
+　　　　}<br>
+　　}<br>
+}</p>
+<h1 id="判断数据类型">判断数据类型</h1>
+<p>使用typeof操作符。<br>
+　　对一个值使用 typeof 操作符可能返回下列某个字符串，返回的类型都是字符串形式。</p>
+<p>(1) undefined：如果这个值未定义</p>
+<p>(2) boolean：如果这个值是布尔值</p>
+<p>(3) string：如果这个值是字符串</p>
+<p>(4) number：如果这个值是数值</p>
+<p>(5) object：如果这个值是对象或null</p>
+<p>(6) function：如果这个值是函数</p>
+<p>需要注意：typeof不适合用于判断是否为数组。当使用typeof判断数组和对象的时候，都会返回object。</p>
+<p>instanceof<br>
+　　instanceof 运算符用来判断一个构造函数的prototype属性所指向的对象是否存在另外一个要检测对象的原型链上。需要区分大小写。</p>
+<p>简单的来说，instanceof 用于判断一个变量是否某个对象的实例。</p>
+<p>例：var arr = new Array( );</p>
+<p>alert(arr instanceof Array);   // 返回true</p>
+<p>需要注意的是，instanceof只能用来判断对象和函数，不能用来判断字符串和数字等。判断它是否为字符串和数字时，只会返回false。</p>
+<p>constructor 属性返回对创建此对象的数组函数的引用。</p>
+<p>在JavaScript中，每个具有原型的对象都会自动获得constructor属性。</p>
+<p>Object.prototype.toString.call</p>
+<p>时效缓存（强制缓存）：<br>
+Cache-Control （低版本浏览器用的是Expires，了解即可）</p>
+<p>是最重要的规则。常见的取值有private、public、no-cache、max-age，no-store，默认为private。</p>
+<p>private:             客户端可以缓存</p>
+<p>public:              客户端和代理服务器都可缓存（前端的同学，可以认为public和private是一样的）</p>
+<p>max-age=xxx:   缓存的内容将在 xxx 秒后失效</p>
+<p>no-cache:          需要使用对比缓存来验证缓存数据</p>
+<p>no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发（对于前端开发来说，缓存越多越好，so...基本上和它说886）</p>
+<p>非时效缓存（对比缓存，用的是标识）：<br>
+他用的不是时效时间max-age</p>
+<p>第一次请求的时候，返回给客户端数据和缓存的信息，也就是一个特定的缓存标识</p>
+<p>客户端把这个缓存标识放到缓存数据库</p>
+<p>再次请求时 客户端先把缓存标识也一起发给服务端，进行对比</p>
+<p>客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。</p>
+<p>分为两种缓存标识</p>
+<p>Etag （唯一标识）优先级更高</p>
+<p>Last-Modified/If-Modified-Since  返回给客户端最后这个资源的修改时间，优先级没有Etag高</p>
+<p>对比缓存标识生效不生效时，状态码200，服务端返回body和header</p>
+<p>在对比缓存标识生效时，状态码为304，并且报文大小和请求时间大大减少。</p>
+<p>原因是，服务端在进行标识比较后，只返回header部分，通过状态码通知客户端使用缓存，不再需要将报文主体部分返回给客户端。强制缓存的优先级更高，如果没失效，就直接用缓存数据库里的东西</p>
+<p>如果时间已经失效了，就看用的是哪种标识（Etag服务端生成的唯一标识，还是last-modified资源最后修改时间标识）返回304就用缓存里的，返回200就返回body和新的header</p>
+<p>一般来说，无论如何都会协商缓存，浏览器必备的缓存不可能没有~</p>
+<p>1.3 前端性能优化的方法？<br>
+（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。</p>
+<p>（2） 前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数</p>
+<p>（3） 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。</p>
+<p>（4） 当需要设置的样式很多时设置className而不是直接操作style。</p>
+<p>（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。</p>
+<p>（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。</p>
+<p>（7） 图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。</p>
+<p>（8） 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</p>
+<p>css常见块元素行元素及其区别<br>
+答： 块 div p h1-6 hr li ul<br>
+行 a img input span  br<br>
+块级元素单独占一行，行元素多个占一行<br>
+块级元素可以设置宽高，行元素不行<br>
+行元素上下外边距内边距无效</p>
+<p>css3用过哪些<br>
+边框圆角、动画、transfrom</p>
+<p>cookie的作用及字段属性干啥的<br>
+作为一种标记，可以储存用户信息。<br>
+name 名字值  expires 过期时间 path 可以访问此cookie的路径  domain 可以访问此cookie的域 httponly 是否只能通过http获取  secure 是否只通过https发送  samesite cookie是否跨站</p>
+<p>.es6新特性<br>
+let const 、箭头函数、map、set、...、class、promise</p>
+<p>浅复制，assign，{...}<br>
+12.深复制，loadsh库deepclone，json.parse(json.stringify)</p>
+<p>利用id获取就是：document.getElementById(&quot;name&quot;);</p>
+<p>利用class获取就是：document.getElementsByClassName(&quot;name&quot;);</p>
+<p>利用标签获取就是：document.getElementsByClassTagName(&quot;name&quot;)；<br>
+创建新元素，追加到已有的元素上：document.getElementById(&quot;name&quot;).createElement(“”);<br>
+document.documentElement.clientWidth--获取宽度<br>
+document.documentElement.clientHeight--获取高度</p>
+<p>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p>
+<p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p>
+<p>箭头函数是匿名函数，不能作为构造函数，不能使用new<br>
+箭头函数不能绑定arguments，取而代之用rest参数...解决</p>
+<p>箭头函数的this永远指向其上下文的this，没有办改变其指向，<br>
+普通函数的this指向调用它的对象<br>
+箭头函数不绑定this，会捕获其所在的上下文的this值，作为自己的this值</p>
+<p>Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。同名属性会替换。<br>
+Object.create(prototype[,propertiesObject])<br>
+Object.defineProperties(obj,props)<br>
+Object.keys(obj)<br>
+Object.values()<br>
+Object.entries()</p>
 
               </div>
               <div class="toc-container">
@@ -647,6 +806,9 @@ return &quot;rgb(&quot; + parseInt(&quot;0x&quot; + hex.slice(1, 3)) + &quot;,&q
 <li><a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98">事件委托</a></li>
 <li><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">箭头函数：</a></li>
 <li><a href="#%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a></li>
+<li><a href="#css-position%E6%9C%89%E5%87%A0%E7%A7%8D%E5%B1%9E%E6%80%A7">CSS position有几种属性</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98-2">事件委托</a></li>
+<li><a href="#%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">判断数据类型</a></li>
 </ul>
 
               </div>
